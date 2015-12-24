@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/fluter01/paste"
+	"github.com/fluter01/paste/sprunge"
 )
 
 func usage(prog string) {
