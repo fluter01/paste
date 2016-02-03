@@ -3,8 +3,8 @@ package pastebin
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"regexp"
 )
@@ -12,7 +12,6 @@ import (
 const PASTEBIN_URL = "http://pastebin.com"
 
 var re = regexp.MustCompile(PASTEBIN_URL + "/([[:alnum:]]+)")
-
 
 func GetID(url string) (string, error) {
 	var match []string

@@ -9,8 +9,8 @@ import (
 
 	"github.com/fluter01/paste/bpaste"
 	"github.com/fluter01/paste/codepad"
-	"github.com/fluter01/paste/sprunge"
 	"github.com/fluter01/paste/pastebin"
+	"github.com/fluter01/paste/sprunge"
 )
 
 func usage(prog string) {
@@ -70,7 +70,7 @@ func processFile(filename string) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("URL: ", res)
+	fmt.Println("URL:", res)
 }
 
 func processID(id string) {
@@ -89,7 +89,6 @@ var (
 	getter func(string) (string, error)
 	putter func(string) (string, error)
 )
-
 
 func main() {
 	var help bool

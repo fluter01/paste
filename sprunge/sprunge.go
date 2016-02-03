@@ -1,6 +1,7 @@
 package sprunge
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -100,5 +101,5 @@ func Put(data string) (string, error) {
 		fmt.Println(err)
 		return "", err
 	}
-	return string(body), nil
+	return string(bytes.TrimSpace(body)), nil
 }
