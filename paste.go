@@ -9,6 +9,7 @@ import (
 
 	"github.com/fluter01/paste/bpaste"
 	"github.com/fluter01/paste/codepad"
+	"github.com/fluter01/paste/ideone"
 	"github.com/fluter01/paste/pastebin"
 	"github.com/fluter01/paste/sprunge"
 )
@@ -123,6 +124,8 @@ func main() {
 		getter = codepad.Get
 		putter = codepad.Put
 	case 'i':
+		getter = ideone.Get
+		putter = ideone.Put
 	case 'b':
 		getter = bpaste.Get
 		putter = bpaste.Put

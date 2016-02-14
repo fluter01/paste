@@ -13,7 +13,7 @@ const CODEPAD_URL = "http://codepad.org"
 
 var re = regexp.MustCompile(CODEPAD_URL + "/([[:alnum:]]+)")
 
-// Extract sprunge ID from the given URL.
+// Extract codepad ID from the given URL.
 func GetID(url string) (string, error) {
 	var match []string
 
@@ -56,7 +56,7 @@ func GetReader(id string) (io.Reader, error) {
 
 	resp, err = http.Get(url)
 	if err != nil {
-		fmt.Println("error while get paste from sprunge:", err)
+		fmt.Println("error while get paste from codepad:", err)
 		return nil, err
 	}
 

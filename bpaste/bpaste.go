@@ -13,7 +13,7 @@ const BPASTE_URL = "http://bpaste.net"
 
 var re = regexp.MustCompile("https?://bpaste.net/(?:show|raw)/([[:alnum:]]+)")
 
-// Extract sprunge ID from the given URL.
+// Extract bpaste ID from the given URL.
 func GetID(url string) (string, error) {
 	var match []string
 
@@ -56,7 +56,7 @@ func GetReader(id string) (io.Reader, error) {
 
 	resp, err = http.Get(url)
 	if err != nil {
-		fmt.Println("error while get paste from sprunge:", err)
+		fmt.Println("error while get paste from bpaste:", err)
 		return nil, err
 	}
 
