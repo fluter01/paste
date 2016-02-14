@@ -11,6 +11,7 @@ import (
 	"github.com/fluter01/paste/codepad"
 	"github.com/fluter01/paste/ideone"
 	"github.com/fluter01/paste/pastebin"
+	"github.com/fluter01/paste/pastie"
 	"github.com/fluter01/paste/sprunge"
 )
 
@@ -118,8 +119,18 @@ func main() {
 		getter = sprunge.Get
 		putter = sprunge.Put
 	case 'p':
-		getter = pastebin.Get
-		putter = pastebin.Put
+		if len(service) < 5 {
+			fmt.Println("Ambigious service, pastebin or pastie?")
+			return
+		}
+		switch service[1:5] {
+		case "aste":
+			getter = pastebin.Get
+			putter = pastebin.Put
+		case "asti":
+			getter = pastie.Get
+			putter = pastie.Put
+		}
 	case 'c':
 		getter = codepad.Get
 		putter = codepad.Put
