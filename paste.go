@@ -114,7 +114,8 @@ func main() {
 
 	switch service[0] {
 	default:
-		fallthrough
+		fmt.Println("Unknow service:", service)
+		return
 	case 's':
 		getter = sprunge.Get
 		putter = sprunge.Put
@@ -130,6 +131,9 @@ func main() {
 		case "asti":
 			getter = pastie.Get
 			putter = pastie.Put
+		default:
+			fmt.Println("Unknow service:", service)
+			return
 		}
 	case 'c':
 		getter = codepad.Get
