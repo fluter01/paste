@@ -1,161 +1,95 @@
-package main
+// Copyright 2016 fluter
+
+package paste
 
 import (
-	"flag"
+	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
-	"os"
-	"path/filepath"
-
-	"github.com/fluter01/paste/bpaste"
-	"github.com/fluter01/paste/codepad"
-	"github.com/fluter01/paste/ideone"
-	"github.com/fluter01/paste/pastebin"
-	"github.com/fluter01/paste/pastie"
-	"github.com/fluter01/paste/sprunge"
+	"net/http"
+	urlparser "net/url"
+	"regexp"
 )
 
-func usage(prog string) {
-	fmt.Printf("Usage:    %s [-h|--help] -s <service> -g|-p <file>\n\n"+
-		"             -h|--help - Show this help message.\n"+
-		"             -s|--service - Select paste service(Default sprunge).\n"+
-		"             -g|--get - Get the paste.\n"+
-		"             -p|--put - Send the paste.\n"+
-		"             file      - The file that will be sent to paste.\n",
-		filepath.Base(prog))
-	os.Exit(1)
+var NotSupported = errors.New("Not supported")
+
+type replace struct {
+	from, to string
 }
 
-func readFromStdin() (string, error) {
-	var data []byte
-	var err error
+// list of pastebins and substitutions for getting raw content
+var pastebins map[string]interface{} = map[string]interface{}{
+	"bpaste.net":   replace{"show", "raw"},
+	"codepad.org":  "%s/raw.c",
+	"ideone.com":   "/plain%s",
+	"pastebin.com": "/raw%s",
+	"pastie.org":   "/pastes%s/download",
+	"sprunge.us":   "%s",
+}
 
-	data, err = ioutil.ReadAll(os.Stdin)
+// Get the raw content of the paste given in url
+// Returns the raw text and errors if any
+func Get(url string) (string, error) {
+	reader, err := GetReader(url)
 	if err != nil {
-		fmt.Println("failed to read from stdin")
-		fmt.Println(err)
 		return "", err
 	}
-	return string(data), nil
-}
 
-func readFromFile(filename string) (string, error) {
-	var data []byte
-	var err error
-
-	data, err = ioutil.ReadFile(filename)
+	if rc, ok := reader.(io.ReadCloser); ok {
+		defer rc.Close()
+	}
+	body, err := ioutil.ReadAll(reader)
 	if err != nil {
-		fmt.Println("failed to read from file " + filename)
-		fmt.Println(err)
 		return "", err
 	}
-	return string(data), nil
+
+	return string(body), nil
 }
 
-func processFile(filename string) {
+// Get a io.Reader for reading the paste
+func GetReader(url string) (io.Reader, error) {
 	var err error
-	var data string
-	var res string
+	var u *urlparser.URL
+	var newpath string
+	var newurl string
 
-	if filename == "-" {
-		data, err = readFromStdin()
-	} else {
-		data, err = readFromFile(filename)
-	}
-
+	u, err = urlparser.Parse(url)
 	if err != nil {
-		return
+		return nil, err
 	}
 
-	res, err = putter(data)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println("URL:", res)
-}
-
-func processID(id string) {
-	var err error
-	var res string
-
-	res, err = getter(id)
-	if err != nil {
-		return
+	sub, ok := pastebins[u.Host]
+	if !ok {
+		return nil, NotSupported
 	}
 
-	fmt.Println(res)
-}
-
-var (
-	getter func(string) (string, error)
-	putter func(string) (string, error)
-)
-
-func main() {
-	var help bool
-	var service string
-	var get bool
-	var put bool
-
-	flag.BoolVar(&help, "h", false, "Show help message")
-	flag.BoolVar(&help, "help", false, "Show help message")
-	flag.StringVar(&service, "s", "sprunge", "Paste service")
-	flag.StringVar(&service, "service", "sprunge", "Paste service")
-	flag.BoolVar(&get, "g", false, "Get the paste")
-	flag.BoolVar(&get, "get", false, "Get the paste")
-	flag.BoolVar(&put, "p", false, "Send the paste")
-	flag.BoolVar(&put, "put", false, "Send the paste")
-	flag.Parse()
-
-	if help || (get && put) || !(get || put) {
-		usage(os.Args[0])
-	}
-
-	switch service[0] {
+	switch sub.(type) {
+	case string:
+		rep := sub.(string)
+		newpath = fmt.Sprintf(rep, u.Path)
+	case replace:
+		rep := sub.(replace)
+		re := regexp.MustCompile(rep.from)
+		newpath = re.ReplaceAllString(u.Path, rep.to)
 	default:
-		fmt.Println("Unknow service:", service)
-		return
-	case 's':
-		getter = sprunge.Get
-		putter = sprunge.Put
-	case 'p':
-		if len(service) < 5 {
-			fmt.Println("Ambigious service, pastebin or pastie?")
-			return
-		}
-		switch service[1:5] {
-		case "aste":
-			getter = pastebin.Get
-			putter = pastebin.Put
-		case "asti":
-			getter = pastie.Get
-			putter = pastie.Put
-		default:
-			fmt.Println("Unknow service:", service)
-			return
-		}
-	case 'c':
-		getter = codepad.Get
-		putter = codepad.Put
-	case 'i':
-		getter = ideone.Get
-		putter = ideone.Put
-	case 'b':
-		getter = bpaste.Get
-		putter = bpaste.Put
+		return nil, NotSupported
+	}
+	u.Path = newpath
+	newurl = u.String()
+	fmt.Println("new", newurl)
+
+	var rsp *http.Response
+
+	rsp, err = http.Get(newurl)
+	if err != nil {
+		return nil, err
 	}
 
-	if put {
-		for i := 0; i < flag.NArg(); i++ {
-			file := flag.Arg(i)
-			processFile(file)
-		}
-	} else {
-		for i := 0; i < flag.NArg(); i++ {
-			id := flag.Arg(i)
-			processID(id)
-		}
+	if rsp.StatusCode != 200 {
+		defer rsp.Body.Close()
+		return nil, errors.New(rsp.Status)
 	}
-	return
+
+	return rsp.Body, nil
 }
