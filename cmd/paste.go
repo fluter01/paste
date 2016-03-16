@@ -65,7 +65,7 @@ func processFile(filename string) {
 		return
 	}
 
-	res, err = putter(data)
+	res, err = paste.Paste(data)
 	if err != nil {
 		fmt.Println(err)
 		return
