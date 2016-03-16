@@ -3,6 +3,7 @@
 package paste
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -77,7 +78,6 @@ func GetReader(url string) (io.Reader, error) {
 	}
 	u.Path = newpath
 	newurl = u.String()
-	fmt.Println("new", newurl)
 
 	var rsp *http.Response
 
@@ -92,4 +92,32 @@ func GetReader(url string) (io.Reader, error) {
 	}
 
 	return rsp.Body, nil
+}
+
+const Sprunge = "http://sprunge.us"
+
+// Send text to paste.
+// Returns the paste URL or error if any.
+func Paste(text string) (string, error) {
+	var err error
+	var resp *http.Response
+	var body []byte
+
+	formData := urlparser.Values{"sprunge": {text}}
+
+	resp, err = http.PostForm(Sprunge, formData)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		return "", errors.New(resp.Status)
+	}
+
+	body, err = ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes.TrimSpace(body)), nil
 }

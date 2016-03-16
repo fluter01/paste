@@ -1,12 +1,15 @@
 # paste
 
-A tool and API for getting the raw text content from online pastebin services.
+A tool and API downloading from and send paste to online pastebin services.
 
-Currently supports following pastebins:
+Currently support getting paste from following pastebins:
 
 * bpaste.net
 * codepad.org
 * ideone.com
 * pastebin.com
 * pastie.org
+* sprunge.us
+
+Can send paste to:
 * sprunge.us

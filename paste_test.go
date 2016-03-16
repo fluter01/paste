@@ -42,3 +42,12 @@ func TestGet(t *testing.T) {
 		}
 	}
 }
+
+func TestPut(t *testing.T) {
+	text := "This is a test message"
+	id, err := Paste(text)
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(id)
+}
