@@ -23,6 +23,7 @@ type replace struct {
 var pastebins map[string]interface{} = map[string]interface{}{
 	"bpaste.net":   replace{"show", "raw"},
 	"codepad.org":  "%s/raw.c",
+	"dpaste.com":   "%s.txt",
 	"ideone.com":   "/plain%s",
 	"pastebin.com": "/raw%s",
 	"pastie.org":   "/pastes%s/download",

@@ -22,6 +22,8 @@ var entries []entry = []entry{
 	{"http://ideone.com/y2FsS8", true},
 	{"http://pastie.org/abc", false},
 	{"http://pastie.org/10764925", true},
+	{"http://dpaste.com/abc", false},
+	{"http://dpaste.com/2CQFK52", true},
 	{"http://foo.bar/baz", false},
 }
 
