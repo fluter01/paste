@@ -1,5 +1,7 @@
 // Copyright 2016 fluter
 
+// Package paste provides APIs to download and send paste snippets
+// from/to online pastebin services.
 package paste
 
 import (
