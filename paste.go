@@ -13,6 +13,8 @@ import (
 	"regexp"
 )
 
+// The error to indicate getting paste from the site is
+// not yet supported. Create an issue on github.com :)
 var NotSupported = errors.New("Not supported")
 
 type replace struct {
