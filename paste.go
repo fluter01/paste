@@ -13,16 +13,18 @@ import (
 	"regexp"
 )
 
+const sprunge = "http://sprunge.us"
+
 // The error to indicate getting paste from the site is
 // not yet supported. Create an issue on github.com :)
-var NotSupported = errors.New("Not supported")
+var ErrNotSupported = errors.New("Not supported")
 
 type replace struct {
 	from, to string
 }
 
 // list of pastebins and substitutions for getting raw content
-var pastebins map[string]interface{} = map[string]interface{}{
+var pastebins = map[string]interface{}{
 	"bpaste.net":   replace{"show", "raw"},
 	"codepad.org":  "%s/raw.c",
 	"dpaste.com":   "%s.txt",
@@ -32,8 +34,8 @@ var pastebins map[string]interface{} = map[string]interface{}{
 	"sprunge.us":   "%s",
 }
 
-// Get the raw content of the paste given in url
-// Returns the raw text and errors if any
+// Get download the raw content of the paste given in url.
+// Returns the raw text and errors if any.
 func Get(url string) (string, error) {
 	reader, err := GetReader(url)
 	if err != nil {
@@ -51,7 +53,7 @@ func Get(url string) (string, error) {
 	return string(body), nil
 }
 
-// Get a io.Reader for reading the paste
+// GetReader returns a io.Reader for reading the paste.
 func GetReader(url string) (io.Reader, error) {
 	var err error
 	var u *urlparser.URL
@@ -65,7 +67,7 @@ func GetReader(url string) (io.Reader, error) {
 
 	sub, ok := pastebins[u.Host]
 	if !ok {
-		return nil, NotSupported
+		return nil, ErrNotSupported
 	}
 
 	switch sub.(type) {
@@ -77,7 +79,7 @@ func GetReader(url string) (io.Reader, error) {
 		re := regexp.MustCompile(rep.from)
 		newpath = re.ReplaceAllString(u.Path, rep.to)
 	default:
-		return nil, NotSupported
+		return nil, ErrNotSupported
 	}
 	u.Path = newpath
 	newurl = u.String()
@@ -97,9 +99,7 @@ func GetReader(url string) (io.Reader, error) {
 	return rsp.Body, nil
 }
 
-const Sprunge = "http://sprunge.us"
-
-// Send text to paste.
+// Paste sends text to paste.
 // Returns the paste URL or error if any.
 func Paste(text string) (string, error) {
 	var err error
@@ -108,7 +108,7 @@ func Paste(text string) (string, error) {
 
 	formData := urlparser.Values{"sprunge": {text}}
 
-	resp, err = http.PostForm(Sprunge, formData)
+	resp, err = http.PostForm(sprunge, formData)
 	if err != nil {
 		return "", err
 	}

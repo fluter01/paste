@@ -9,7 +9,7 @@ type entry struct {
 	ok  bool
 }
 
-var entries []entry = []entry{
+var entries = []entry{
 	{"http://codepad.org/abcd", false},
 	{"http://codepad.org/d4TzyKaI", true},
 	{"http://bpaste.net/show/abc", false},

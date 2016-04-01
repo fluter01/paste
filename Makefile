@@ -4,7 +4,7 @@ DEST?=/usr/local/bin/
 
 all: $(BIN)
 
-$(BIN):
+$(BIN): paste.go
 	go build -o $(BIN) cmd/paste.go
 
 install: $(BIN)
