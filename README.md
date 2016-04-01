@@ -1,4 +1,5 @@
 # paste
+[![GoDoc](https://godoc.org/github.com/fluter01/paste?status.svg)](https://godoc.org/github.com/fluter01/paste)
 
 ## A tool and API downloading from and send paste to online pastebin services.
 
