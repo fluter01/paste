@@ -1,6 +1,6 @@
 # paste
 
-A tool and API downloading from and send paste to online pastebin services.
+## A tool and API downloading from and send paste to online pastebin services.
 
 Currently support getting paste from following pastebins:
 
@@ -11,5 +11,24 @@ Currently support getting paste from following pastebins:
 * pastie.org
 * sprunge.us
 
-Can send paste to:
+Send paste to:
 * sprunge.us
+
+## Usage:
+
+### download paste
+
+```bash
+gopaste <paste url>
+```
+
+### send paste
+
+Send a file:
+```bash
+gopaste -p foo.txt
+```
+Send a command's output:
+```bash
+cmd | gopaste -p -
+```
