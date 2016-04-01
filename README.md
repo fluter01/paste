@@ -1,6 +1,7 @@
 # paste
 [![GoDoc](https://godoc.org/github.com/fluter01/paste?status.svg)](https://godoc.org/github.com/fluter01/paste)
 [![Build Status](https://travis-ci.org/fluter01/paste.svg?branch=master)](https://travis-ci.org/fluter01/paste)
+[![codecov.io](https://codecov.io/github/fluter01/paste/coverage.svg?branch=master)](https://codecov.io/github/fluter01/paste?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/fluter01/paste)](https://goreportcard.com/report/github.com/fluter01/paste)
 
 ## A tool and API downloading from and send paste to online pastebin services.
