@@ -11,7 +11,7 @@ install: $(BIN)
 	install -D $(BIN) $(DEST)
 
 test: paste_test.go
-	go test -v ./...
+	go test -v -cover -covermode atomic -coverprofile coverage.out
 
 .PHONY=clean
 clean:
