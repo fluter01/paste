@@ -25,10 +25,27 @@ var entries = []entry{
 	{"http://dpaste.com/abc", false},
 	{"http://dpaste.com/2CQFK52", true},
 	{"http://foo.bar/baz", false},
+	{"http://paste.debian.net/427049/", true},
+	{"http://paste.debian.net/abc", false},
+	{"http://paste.fedoraproject.org/351674/", true},
+	{"http://paste.fedoraproject.org/false/", false},
+	{"http://paste.fedoraproject.org/351675/16030146/", true},
+	{"https://ptpb.pw/WMa-", true},
+	{"https://ptpb.pw/false", false},
+	{"http://paste.pr0.tips/Ky", true},
+	{"http://paste.pr0.tips/false", true},
+	{"http://vp.dav1d.de/Vvn4U", true},
+	{"http://vp.dav1d.de/false", false},
+	{"http://hastebin.com/ilanaqadel.vbs", true},
+	{"http://lpaste.net/159275", true},
+	{"http://fpaste.org/351700/", true},
+	{"https://ghostbin.com/paste/tzh3m", true},
+	{"https://dpaste.de/DhN3", true},
+	{"http://paste.ee/p/yIw9B", true},
 }
 
 func TestGet(t *testing.T) {
-	for _, e := range entries {
+	for _, e := range entries[15:] {
 		t.Log("Getting", e.url)
 		ret, err := Get(e.url)
 		if err != nil {

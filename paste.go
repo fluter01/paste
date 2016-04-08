@@ -27,13 +27,26 @@ type replace struct {
 
 // list of pastebins and substitutions for getting raw content
 var pastebins = map[string]interface{}{
-	"bpaste.net":   replace{"show", "raw"},
-	"codepad.org":  "%s/raw.c",
-	"dpaste.com":   "%s.txt",
-	"ideone.com":   "/plain%s",
-	"pastebin.com": "/raw%s",
-	"pastie.org":   "/pastes%s/download",
-	"sprunge.us":   "%s",
+	"bpaste.net":              replace{"show", "raw"},
+	"codepad.org":             "%s/raw.c",
+	"dpaste.com":              "%s.txt",
+	"ideone.com":              "/plain%s",
+	"pastebin.com":            "/raw%s",
+	"pastie.org":              "/pastes%s/download",
+	"sprunge.us":              "%s",
+	"privatepaste.com":        "/download%s",
+	"paste.debian.net":        "/plain%s",
+	"paste.fedoraproject.org": "%s/raw",
+	"ptpb.pw":                 "%s",
+	"paste.pr0.tips":          "%s",
+	"vp.dav1d.de":             "%s",
+	"hastebin.com":            replace{"/([^.]*)\\.(.*)", "/raw/$1"},
+	"lpaste.net":              "/raw%s",
+	"fpaste.org":              "%s/raw/",
+	"ghostbin.com":            "%s/raw",
+	"dpaste.de":               "%s/raw",
+	"codeviewer.org":          replace{"view", "download"},
+	"paste.ee":                replace{"/p/", "/r/"},
 }
 
 // Get download the raw content of the paste given in url.
