@@ -42,6 +42,18 @@ var entries = []entry{
 	{"https://ghostbin.com/paste/tzh3m", true},
 	{"https://dpaste.de/DhN3", true},
 	{"http://paste.ee/p/yIw9B", true},
+	{"http://paste.linuxassist.net/view/af59ea55", true},
+	{"http://paste.linux.chat/view/af59ea55", true},
+	{"http://paste.pound-python.org/show/ue14Up5c83BXUdDR1AAQ/", true},
+	{"http://pastebin.geany.org/7cqOA/", true},
+	{"https://paste.kde.org/pkzew5624", true},
+	{"http://paste.eientei.org/show/1036/", true},
+	{"http://www.heypasteit.com/clip/2KQ7", true},
+	//{"https://pastebin.mozilla.org/8867128", true},
+	{"http://paste.ubuntu.org.cn/4170959", true},
+	{"http://pastebin.ca/3464385", true},
+	{"https://paste.lugons.org/show/XlahOkDwVBqtkjRt6H2f/", true},
+	{"https://paste.lugons.org/show/10028/", true},
 }
 
 func TestGet(t *testing.T) {
