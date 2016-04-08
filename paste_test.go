@@ -74,6 +74,18 @@ func TestGet(t *testing.T) {
 	}
 }
 
+func TestGetErr(t *testing.T) {
+	_, err := Get("http://foo.bar/xyz")
+	if err != ErrNotSupported {
+		t.Fail()
+	}
+
+	_, err = Get("%3")
+	if err == nil {
+		t.Fail()
+	}
+}
+
 func TestPut(t *testing.T) {
 	text := "This is a test message"
 	id, err := Paste(text)
