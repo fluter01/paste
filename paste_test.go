@@ -45,7 +45,7 @@ var entries = []entry{
 }
 
 func TestGet(t *testing.T) {
-	for _, e := range entries[15:] {
+	for _, e := range entries {
 		t.Log("Getting", e.url)
 		ret, err := Get(e.url)
 		if err != nil {
