@@ -15,6 +15,19 @@ Currently support getting paste from following pastebins:
 * pastebin.com
 * pastie.org
 * sprunge.us
+* privatepaste.com
+* paste.debian.net
+* paste.fedoraproject.org
+* ptpb.pw
+* paste.pr0.tips
+* vp.dav1d.de
+* hastebin.com
+* lpaste.net
+* fpaste.org
+* ghostbin.com
+* dpaste.de
+* codeviewer.org
+* paste.ee
 
 Send paste to:
 * sprunge.us
