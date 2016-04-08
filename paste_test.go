@@ -39,7 +39,7 @@ var entries = []entry{
 	{"http://hastebin.com/ilanaqadel.vbs", true},
 	{"http://lpaste.net/159275", true},
 	{"http://fpaste.org/351700/", true},
-	{"https://ghostbin.com/paste/tzh3m", true},
+	{"http://ghostbin.com/paste/tzh3m", true},
 	{"https://dpaste.de/DhN3", true},
 	{"http://paste.ee/p/yIw9B", true},
 	{"http://paste.linuxassist.net/view/af59ea55", true},

@@ -30,7 +30,7 @@ Currently support getting paste from following pastebins:
 * paste.ee
 * paste.linuxassist.net
 * paste.linux.chat
-* paste.pound-python.org"
+* paste.pound-python.org
 * pastebin.geany.org
 * paste.kde.org
 * paste.eientei.org
