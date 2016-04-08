@@ -27,6 +27,16 @@ Currently support getting paste from following pastebins:
 * dpaste.de
 * codeviewer.org
 * paste.ee
+* paste.linuxassist.net
+* paste.linux.chat
+* paste.pound-python.org"
+* pastebin.geany.org
+* paste.kde.org
+* paste.eientei.org
+* www.heypasteit.com
+* paste.ubuntu.org.cn
+* pastebin.ca
+* paste.lugons.org
 
 Send paste to:
 * sprunge.us
