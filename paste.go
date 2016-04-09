@@ -57,6 +57,7 @@ var pastebins = map[string]interface{}{
 	"paste.ubuntu.org.cn":     replace{"/([a-zA-Z0-9]+)", "d$1"},
 	"pastebin.ca":             "/raw%s",
 	"paste.lugons.org":        replace{"show", "raw"},
+	"play.golang.org":         "%s.go",
 	//	"pastebin.mozilla.org":    replace{"/(.*)", "/?dl=$1"},
 }
 

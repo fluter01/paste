@@ -54,6 +54,7 @@ var entries = []entry{
 	{"http://pastebin.ca/3464385", true},
 	{"https://paste.lugons.org/show/XlahOkDwVBqtkjRt6H2f/", true},
 	{"https://paste.lugons.org/show/10028/", true},
+	{"http://play.golang.org/p/v3rrZLwEUC", true},
 }
 
 func TestGet(t *testing.T) {

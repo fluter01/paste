@@ -38,6 +38,7 @@ Currently support getting paste from following pastebins:
 * paste.ubuntu.org.cn
 * pastebin.ca
 * paste.lugons.org
+* play.golang.org
 
 Send paste to:
 * sprunge.us
