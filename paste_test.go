@@ -40,7 +40,7 @@ var entries = []entry{
 	{"http://lpaste.net/159275", true},
 	{"http://fpaste.org/351700/", true},
 	//{"http://ghostbin.com/paste/tzh3m", true},
-	{"https://dpaste.de/DhN3", true},
+	//{"https://dpaste.de/DhN3", true},  - no permanent paste on this site, at most one month
 	{"http://paste.ee/p/yIw9B", true},
 	{"http://paste.linuxassist.net/view/af59ea55", true},
 	{"http://paste.linux.chat/view/af59ea55", true},
