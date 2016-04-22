@@ -55,10 +55,11 @@ var entries = []entry{
 	{"https://paste.lugons.org/show/XlahOkDwVBqtkjRt6H2f/", true},
 	{"https://paste.lugons.org/show/10028/", true},
 	{"http://play.golang.org/p/v3rrZLwEUC", true},
+	{"https://glot.io/snippets/ee0hwdwb3x", true},
 }
 
 func TestGet(t *testing.T) {
-	for _, e := range entries {
+	for _, e := range entries[len(entries)-1:] {
 		t.Log("Getting", e.url)
 		ret, err := Get(e.url)
 		if err != nil {
