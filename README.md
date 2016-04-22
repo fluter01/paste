@@ -62,3 +62,9 @@ Send a command's output:
 ```bash
 cmd | gopaste -p -
 ```
+
+## Why
+
+I'm an IRC user that works on terminal, when someone post his code snippet in the channel, I hate to lunch the browser to view that code. So I decided to make this tool. It will help you get the raw content of the snippets in your terminal, no browser, no GUI needed!
+The project is partly inspired by [fstd/cwarn](https://github.com/fstd/cwarn), which scrapes paste links and tries to compile them.
+
