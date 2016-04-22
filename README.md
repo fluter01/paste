@@ -39,6 +39,7 @@ Currently support getting paste from following pastebins:
 * pastebin.ca
 * paste.lugons.org
 * play.golang.org
+* glot.io
 
 Send paste to:
 * sprunge.us
