@@ -1,4 +1,4 @@
-// Copyright 2016 fluter
+# Copyright 2016 fluter
 
 BIN=gopaste
 DEST?=/usr/local/bin/
