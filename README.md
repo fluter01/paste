@@ -40,6 +40,7 @@ Currently support getting paste from following pastebins:
 * paste.lugons.org
 * play.golang.org
 * glot.io
+* vpaste.net
 
 Send paste to:
 * sprunge.us
