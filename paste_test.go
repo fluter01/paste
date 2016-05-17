@@ -56,6 +56,7 @@ var entries = []entry{
 	{"https://paste.lugons.org/show/10028/", true},
 	{"http://play.golang.org/p/v3rrZLwEUC", true},
 	{"https://glot.io/snippets/ee0hwdwb3x", true},
+	{"http://vpaste.net/p9C56", true},
 }
 
 func TestGet(t *testing.T) {

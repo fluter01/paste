@@ -59,6 +59,7 @@ var pastebins = map[string]interface{}{
 	"paste.lugons.org":        replace{"show", "raw"},
 	"play.golang.org":         "%s.go",
 	"glot.io":                 "%s/raw",
+	"vpaste.net":              "%s",
 	//	"pastebin.mozilla.org":    replace{"/(.*)", "/?dl=$1"},
 }
 
