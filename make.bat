@@ -13,7 +13,7 @@ IF ERRORLEVEL 1 CALL :default
 exit /b
 
 :make_all
-	go build -o %exe% cmd/paste.go
+	go build -o %exe% cmd/gopaste/paste.go
 	goto end
 :make_test
 	go test -v -cover -covermode atomic -coverprofile coverage.out
@@ -25,5 +25,5 @@ exit /b
 	echo make.bat: *** No rule to make target '%action%'.  Stop.
 
 :end
-	VER > NULL
+	VER > NUL
 	GOTO :EOF
