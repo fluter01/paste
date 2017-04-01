@@ -41,6 +41,7 @@ Currently support getting paste from following pastebins:
 * play.golang.org
 * glot.io
 * vpaste.net
+* ix.io
 
 Send paste to:
 * sprunge.us

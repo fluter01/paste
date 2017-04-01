@@ -61,6 +61,7 @@ var pastebins = map[string]interface{}{
 	"glot.io":                 "%s/raw",
 	"vpaste.net":              "%s",
 	//	"pastebin.mozilla.org":    replace{"/(.*)", "/?dl=$1"},
+	"ix.io": replace{"(?U)^(/.*)/.*$", "$1"},
 }
 
 // Get download the raw content of the paste given in url.
